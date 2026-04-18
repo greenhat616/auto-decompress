@@ -1,0 +1,15 @@
+[workspace]
+members = ["normalize-filename"]
+resolver = "3"
+
+[workspace.package]
+edition = "2024"
+
+[workspace.dependencies]
+fs-err = { version = "3.3.0", features = ["tokio"] }
+test-log = { version = "0.2.19", features = ["trace"] }
+tracing = "0.1"
+camino = { version = "1.2.2", features = ["serde1"] }
+pretty_assertions = "1.4.1"
+file_type = { version = "0.8.11", features = ["all"], default-features = false }
+thiserror = "2"

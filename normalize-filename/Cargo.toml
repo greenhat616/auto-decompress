@@ -1,0 +1,17 @@
+[package]
+name = "normalize-filename"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+fs-err = { workspace = true }
+file_type = { workspace = true }
+tracing = { workspace = true }
+camino = { workspace = true }
+thiserror = { workspace = true }
+
+[dev-dependencies]
+test-log = { workspace = true }
+pretty_assertions = { workspace = true }
+zip = "6.0.0"
+tempfile = "3.10"
