@@ -21,6 +21,7 @@ impl FileTypeDetector for NormalFileTypeDetector {
     }
 }
 
+#[allow(dead_code)]
 pub fn normalize_extension(filename: &str) -> Cow<'_, str> {
     let Some((name, extension)) = filename.split_once('.') else {
         return Cow::Borrowed(filename);
