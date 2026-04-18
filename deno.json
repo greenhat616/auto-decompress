@@ -5,6 +5,13 @@
     "fmt": "cargo fmt --all"
   },
   "imports": {
-    "@std/assert": "jsr:@std/assert@1"
+    "@std/assert": "jsr:@std/assert@1",
+    "@std/fs/ensure-dir": "jsr:@std/fs@1/ensure-dir",
+    "@std/fs/exists": "jsr:@std/fs@1/exists",
+    "@std/path": "jsr:@std/path@1",
+    "@commitlint/types": "npm:@commitlint/types@19"
+  },
+  "fmt": {
+    "lineWidth": 100
   }
 }
