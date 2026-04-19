@@ -1,0 +1,19 @@
+[package]
+name = "bit7z-rs"
+version = "0.1.0"
+edition.workspace = true
+description = "Rust bindings for bit7z - a C++ wrapper for 7-zip"
+license = "MIT OR Apache-2.0"
+links = "bit7z_wrapper"
+
+[dependencies]
+thiserror.workspace = true
+cxx.workspace = true
+
+[build-dependencies]
+cxx-build = "1.0"
+pkg-config = "0.3"
+
+[features]
+default = []
+bundled = []
