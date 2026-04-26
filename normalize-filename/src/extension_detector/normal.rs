@@ -62,6 +62,16 @@ mod tests {
     use pretty_assertions::assert_eq;
 
     #[test_log::test]
+    fn test_accepted_input_kinds() {
+        let detector = NormalFileTypeDetector;
+
+        assert_eq!(
+            detector.accepted_input_kinds(),
+            vec![InputKind::Bytes, InputKind::Path]
+        );
+    }
+
+    #[test_log::test]
     fn test_normalize_extension() {
         assert_eq!(normalize_extension("test.exe"), "test.exe");
         assert_eq!(normalize_extension(".env"), ".env");
@@ -71,6 +81,12 @@ mod tests {
     #[test_log::test]
     fn test_detect_file_type() {
         let file_type = detect_file_type(b"A Very Very Very Long text", None);
+        assert_eq!(file_type.name(), "Text");
+    }
+
+    #[test_log::test]
+    fn test_detect_file_type_prefers_magic_over_spoofed_extension() {
+        let file_type = detect_file_type(b"A Very Very Very Long text", Some("jpg"));
         assert_eq!(file_type.name(), "Text");
     }
 
@@ -95,6 +111,15 @@ mod tests {
 
         // 验证识别结果为 zip
         assert_eq!(file_type.name(), "ZIP Format");
+    }
+
+    #[test_log::test]
+    fn test_detect_type_from_path_returns_io_error_for_missing_file() {
+        let temp_dir = tempfile::TempDir::new().unwrap();
+        let missing = temp_dir.path().join("missing.zip");
+        let path = Utf8Path::from_path(&missing).unwrap();
+
+        assert!(matches!(detect_type_from_path(path), Err(Error::Io(_))));
     }
 
     #[test_log::test]
