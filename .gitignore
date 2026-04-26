@@ -1,7 +1,6 @@
 /target
 /output
 /test_data
-/bit7z-src
 *.obj
 .claude/
 .serena/
